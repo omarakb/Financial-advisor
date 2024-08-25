@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Advisor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #e9ecef;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Financial Advisor</h1>
+    <div class="question">
+        <label for="income">What is your monthly income?</label>
+        <input type="text" id="income">
+    </div>
+    <div class="question">
+        <label for="savings">How much savings do you have?</label>
+        <input type="text" id="savings">
+    </div>
+    <div class="question">
+        <label for="time">How much time can you dedicate to earning online?</label>
+        <select id="time">
+            <option value="1-2 hours">1-2 hours</option>
+            <option value="3-4 hours">3-4 hours</option>
+            <option value="5+ hours">5+ hours</option>
+        </select>
+    </div>
+    <button class="btn" onclick="getAdvice()">Get Advice</button>
+
+    <div class="result" id="result">
+        <!-- Personalized suggestions will be displayed here -->
+    </div>
+</div>
+
+<script>
+    function getAdvice() {
+        const income = document.getElementById('income').value;
+        const savings = document.getElementById('savings').value;
+        const time = document.getElementById('time').value;
+
+        let advice = '';
+
+        if (income < 1000) {
+            advice += 'Consider starting with low-risk opportunities such as freelance work or surveys.<br>';
+        } else if (income >= 1000 && income <= 3000) {
+            advice += 'You might explore affiliate marketing or content creation on YouTube.<br>';
+        } else {
+            advice += 'Investing in online businesses or trading could be an option.<br>';
+        }
+
+        if (savings < 500) {
+            advice += 'Build an emergency fund before taking any financial risks.<br>';
+        } else if (savings >= 500 && savings <= 5000) {
+            advice += 'Look into medium-risk investments like stocks.<br>';
+        } else {
+            advice += 'You could consider high-risk, high-reward investments like cryptocurrencies.<br>';
+        }
+
+        if (time === '1-2 hours') {
+            advice += 'Focus on passive income streams such as dropshipping.<br>';
+        } else if (time === '3-4 hours') {
+            advice += 'Freelancing or online tutoring could be ideal.<br>';
+        } else {
+            advice += 'Consider building a blog or YouTube channel for long-term income.<br>';
+        }
+
+        document.getElementById('result').innerHTML = advice;
+        document.getElementById('result').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
